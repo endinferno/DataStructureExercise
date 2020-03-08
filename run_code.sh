@@ -2,7 +2,9 @@
 
 clear
 cd ./SequenceList
-make clean
+if [ -f main ];then
+	make clean
+fi
 make
 echo "---Code Run--------"
 echo ""

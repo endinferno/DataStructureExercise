@@ -232,3 +232,37 @@ void ListFindElement(SqList &L, ElemType e)
     }
     ListInsert(L, left + 1, e);
 }
+
+void ListCyclicMove(ElemType arr[], int length, int p)
+{
+    Reverse(arr, length);
+    Reverse(arr, length - p);
+    Reverse(arr + length - p, p);
+}
+
+ElemType FindTwoListsMiddle(ElemType arr1[], ElemType arr2[],
+                            int length)
+{
+    int midOrd = length;
+    int i = 0, j = 0, cnt = 0;
+    while (i < length && j < length)
+    {
+        cnt++;
+        if (arr1[i] < arr2[j])
+        {
+            if (cnt == midOrd)
+                return arr1[i];
+            i++;
+        }
+        else
+        {
+            if (cnt == midOrd)
+                return arr2[j];
+            j++;
+        }
+    }
+	if (i == length)
+		return arr2[j];
+	else
+		return arr1[i];
+}

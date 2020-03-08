@@ -30,3 +30,6 @@ SqList *SequenceListCombineList(SqList L1, SqList L2);
 void Reverse(ElemType arr[], int length);
 void SwapListInArray(ElemType arr[], int m, int n);
 void ListFindElement(SqList &L, ElemType e);
+
+void ListCyclicMove(ElemType arr[], int length, int p);
+ElemType FindTwoListsMiddle(ElemType arr1[], ElemType arr2[], int length);
