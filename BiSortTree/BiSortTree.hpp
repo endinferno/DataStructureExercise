@@ -75,6 +75,61 @@ int InsertBST(BiSTree &T, ElemType elem)
         return InsertBST(T->rchild, elem);
 }
 
+int DeleteBSTNode(BiSTree &T, ElemType elem)
+{
+    if (T != NULL)
+    {
+        if (T->data == elem)
+        {
+            if (T->lchild == NULL && T->rchild == NULL)
+            {
+                free(T);
+                T = NULL;
+            }
+            else if (T->lchild == NULL && T->rchild != NULL)
+            {
+                BiSTree tmp = T;
+                T = T->rchild;
+                free(tmp);
+                tmp = NULL;
+            }
+            else if (T->lchild != NULL && T->rchild == NULL)
+            {
+                BiSTree tmp = T;
+                T = T->lchild;
+                free(tmp);
+                tmp = NULL;
+            }
+            else
+            {
+                BiSTree tmp = T;
+                if (T->lchild->rchild != NULL)
+                {
+                    BiSTree leftRight = NULL;
+                    leftRight = T->lchild;
+                    while (leftRight->rchild != NULL)
+                        leftRight = leftRight->rchild;
+                    leftRight->rchild = T->rchild;
+                }
+                else
+                {
+					T->lchild->rchild = T->rchild;
+                }
+                T = T->lchild;
+                free(tmp);
+                tmp = NULL;
+            }
+            return 1;
+        }
+        else if (T->data > elem)
+            return DeleteBSTNode(T->lchild, elem);
+        else
+            return DeleteBSTNode(T->rchild, elem);
+    }
+    else
+        return 0;
+}
+
 void Sort(ElemType arr[], int size)
 {
     if (size <= 0)
